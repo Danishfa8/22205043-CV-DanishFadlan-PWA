@@ -27,15 +27,19 @@ export const requestForToken = () => {
         .then((currentToken) => {
             if (currentToken) {
                 console.log('current token for client: ', currentToken);
-                // Simpan token ini untuk digunakan dalam server notifikasi
+                // Save the token to server or localStorage if needed
+                return currentToken; // Return the token
             } else {
                 console.log('No registration token available. Request permission to generate one.');
+                return null; // Return null if no token is available
             }
         })
         .catch((err) => {
             console.log('An error occurred while retrieving token. ', err);
+            return null; // Return null if there's an error
         });
 };
+
 
 export const onMessageListener = () =>
     new Promise((resolve) => {

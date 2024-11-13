@@ -11,7 +11,7 @@
           <AboutSection />
           <ExperienceAndSkills />
           <CertifSection />
-          <ContactSection />          
+          <ContactSection />
           <Footer />
           <BackToTop />
         </div>
@@ -53,14 +53,16 @@ onMounted(() => {
 });
 
 function requestNotificationPermission() {
-  requestForToken()
-    .then((token) => {
+  requestForToken().then((token) => {
+    if (token) {
       console.log('Notification permission granted. Token:', token);
       // You can send the token to the server or save it in local storage
-    })
-    .catch((err) => {
-      console.error('Unable to get permission to notify.', err);
-    });
+    } else {
+      console.log('No token retrieved.');
+    }
+  }).catch((err) => {
+    console.error('Unable to get permission to notify.', err);
+  });
 }
 </script>
 
